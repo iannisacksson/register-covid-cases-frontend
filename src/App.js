@@ -1,11 +1,17 @@
-import React from "react";
+import React from 'react';
+import { BrowserRouter as Router } from 'react-router-dom';
 
-function App() {
-  return (
-    <div className="App">
-      <h1>Seja bem-vindo, Iann!</h1>
-    </div>
-  );
-}
+import Routes from './routes';
+
+import GlobalStyle from './styles/global';
+
+const App = () => (
+  <>
+    <GlobalStyle />
+    <Router>
+      <Routes />
+    </Router>
+  </>
+);
 
 export default App;
