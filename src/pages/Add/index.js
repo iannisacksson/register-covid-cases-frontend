@@ -1,14 +1,18 @@
 import React from 'react';
 
+import { FiPlus } from 'react-icons/fi';
 import Header from '../../components/Header';
 
-import { Container, TableContainer } from './styles';
+import { Container, TableContainer, Updated } from './styles';
 
 const Add = () => {
   return (
     <>
       <Header />
       <Container>
+        <Updated>
+          <p>Última atualização a 24 minutos</p>
+        </Updated>
         <TableContainer>
           <table>
             <thead>
@@ -23,17 +27,29 @@ const Add = () => {
               <tr>
                 <td>PA</td>
                 <td>25300</td>
-                <td>></td>
+                <td>
+                  <button type="button">
+                    <FiPlus />
+                  </button>
+                </td>
               </tr>
               <tr>
                 <td>AP</td>
                 <td>25300</td>
-                <td>></td>
+                <td>
+                  <button type="button">
+                    <FiPlus />
+                  </button>
+                </td>
               </tr>
               <tr>
                 <td>BA</td>
                 <td>25300</td>
-                <td>></td>
+                <td>
+                  <button type="button">
+                    <FiPlus />
+                  </button>
+                </td>
               </tr>
             </tbody>
           </table>

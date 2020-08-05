@@ -7,6 +7,11 @@ export const Container = styled.div`
   padding: 40px 20px;
 `;
 
+export const Updated = styled.div`
+  color: #969cb3;
+  text-align: center;
+`;
+
 export const TableContainer = styled.section`
   margin-top: 64px;
 
@@ -31,6 +36,18 @@ export const TableContainer = styled.section`
       font-weight: normal;
       color: #969cb3;
       text-align: center;
+
+      button {
+        margin-left: auto;
+        background: transparent;
+        border: 0;
+
+        svg {
+          color: #999591;
+          width: 20px;
+          height: 20px;
+        }
+      }
 
       &.title {
         color: #363f5f;
