@@ -28,4 +28,8 @@ export const Container = styled.div`
       }
     }
   }
+
+  p {
+    color: #fff;
+  }
 `;
