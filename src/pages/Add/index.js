@@ -11,13 +11,14 @@ import apiCases from '../../services/apiCases';
 
 const Add = () => {
   const [cases, setCases] = useState([]);
+  const [caseOne, setCaseOne] = useState({});
   const [lastUpdate, setLastUpdate] = useState();
   const [modalIsOpen, setModelIsOpen] = useState();
 
   useEffect(() => {
     apiCases.get().then(response => {
       const casesData = response.data.infectedByRegion;
-      const hourUpdate = parseISO(response.data.lastUpdatedAtSource);
+      const hourUpdate = parseISO(response.data.lastUpdatedAtApify);
 
       const distance = formatDistance(hourUpdate, new Date(), { locale: pt });
 
@@ -27,8 +28,9 @@ const Add = () => {
     });
   }, []);
 
-  function openModal() {
+  function openModal(caseIndex) {
     setModelIsOpen(true);
+    setCaseOne(caseIndex);
   }
 
   function closeModal() {
@@ -40,7 +42,7 @@ const Add = () => {
       <Header />
       <Container>
         <Updated>
-          <p>Última atualização a {lastUpdate}</p>
+          <p>Última atualização do APIFY foi a{lastUpdate}</p>
         </Updated>
         <TableContainer>
           <table>
@@ -58,7 +60,7 @@ const Add = () => {
                   <td>{caseIndex.state}</td>
                   <td>{caseIndex.count}</td>
                   <td>
-                    <button type="button" onClick={openModal}>
+                    <button type="button" onClick={() => openModal(caseIndex)}>
                       <FiPlus />
                     </button>
                   </td>
@@ -68,7 +70,11 @@ const Add = () => {
           </table>
         </TableContainer>
       </Container>
-      <Modal isOpen={modalIsOpen} handleClick={closeModal} />
+      <Modal
+        caseIndex={caseOne}
+        isOpen={modalIsOpen}
+        handleClick={closeModal}
+      />
     </>
   );
 };
