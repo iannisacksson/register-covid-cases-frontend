@@ -10,7 +10,6 @@ import { Container, TableContainer, Updated } from './styles';
 import apiCases from '../../services/apiCases';
 
 const Add = () => {
-  let subtitle;
   const [cases, setCases] = useState([]);
   const [lastUpdate, setLastUpdate] = useState();
   const [modalIsOpen, setModelIsOpen] = useState();
@@ -30,11 +29,6 @@ const Add = () => {
 
   function openModal() {
     setModelIsOpen(true);
-  }
-
-  function afterOpenModal() {
-    // references are now sync'd and can be accessed.
-    subtitle.style.color = '#f00';
   }
 
   function closeModal() {
@@ -74,7 +68,7 @@ const Add = () => {
           </table>
         </TableContainer>
       </Container>
-      <Modal isOpen />
+      <Modal isOpen={modalIsOpen} handleClick={closeModal} />
     </>
   );
 };

@@ -1,17 +1,14 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import { CustomStyles, Container, Button } from './styles';
 
-const Modal = ({ isOpen }) => {
-  function closeModal() {
-    isOpen = false;
-  }
-
+const Modal = ({ isOpen, handleClick }) => {
   return (
     <>
       <CustomStyles
         isOpen={isOpen}
-        onRequestClose={closeModal}
+        onRequestClose={handleClick}
         contentLabel="Example Modal"
       >
         <h2>Adicionar novos casos</h2>
@@ -30,6 +27,11 @@ const Modal = ({ isOpen }) => {
       </CustomStyles>
     </>
   );
+};
+
+Modal.propTypes = {
+  isOpen: PropTypes.bool.isRequired,
+  handleClick: PropTypes.func.isRequired,
 };
 
 export default Modal;

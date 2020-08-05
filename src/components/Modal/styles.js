@@ -1,26 +1,33 @@
 import styled from 'styled-components';
 import Modal from 'react-modal';
-import { shade } from 'polished';
+import { shade, transparentize } from 'polished';
 
 const customStyles = {
-  content: {
-    maxWidth: '600px',
+  overlay: {
+    background: `${transparentize(0.3, '#000')}`,
     height: '100%',
-    margin: '0 auto',
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
-    flexDirection: 'column',
+  },
+  content: {
+    maxWidth: '600px',
+    margin: '0 auto',
   },
 };
 
 export const CustomStyles = styled(Modal).attrs({
   style: customStyles,
 })`
+  background: #fff;
+  padding: 30px;
+  border-radius: 4px;
+
   h2 {
     font-weight: 500;
     color: #666360;
     padding: 20px 0;
+    text-align: center;
   }
 
   form {
