@@ -4,13 +4,16 @@ import { FiPlus } from 'react-icons/fi';
 import { formatDistance, parseISO } from 'date-fns';
 import { pt } from 'date-fns/locale';
 import Header from '../../components/Header';
+import Modal from '../../components/Modal';
 
 import { Container, TableContainer, Updated } from './styles';
 import apiCases from '../../services/apiCases';
 
 const Add = () => {
+  let subtitle;
   const [cases, setCases] = useState([]);
   const [lastUpdate, setLastUpdate] = useState();
+  const [modalIsOpen, setModelIsOpen] = useState();
 
   useEffect(() => {
     apiCases.get().then(response => {
@@ -24,6 +27,20 @@ const Add = () => {
       setCases(casesData);
     });
   }, []);
+
+  function openModal() {
+    setModelIsOpen(true);
+  }
+
+  function afterOpenModal() {
+    // references are now sync'd and can be accessed.
+    subtitle.style.color = '#f00';
+  }
+
+  function closeModal() {
+    setModelIsOpen(false);
+  }
+
   return (
     <>
       <Header />
@@ -47,7 +64,7 @@ const Add = () => {
                   <td>{caseIndex.state}</td>
                   <td>{caseIndex.count}</td>
                   <td>
-                    <button type="button">
+                    <button type="button" onClick={openModal}>
                       <FiPlus />
                     </button>
                   </td>
@@ -57,6 +74,7 @@ const Add = () => {
           </table>
         </TableContainer>
       </Container>
+      <Modal isOpen />
     </>
   );
 };
