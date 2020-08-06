@@ -5,6 +5,7 @@ import { formatDistance, parseISO } from 'date-fns';
 import { pt } from 'date-fns/locale';
 import Header from '../../components/Header';
 import Modal from '../../components/Modal';
+import ComponentSkeleton from '../../components/Skeleton';
 
 import { Container, TableContainer, Updated } from './styles';
 import apiCases from '../../services/apiCases';
@@ -14,6 +15,7 @@ const Add = () => {
   const [caseOne, setCaseOne] = useState({});
   const [lastUpdate, setLastUpdate] = useState();
   const [modalIsOpen, setModelIsOpen] = useState();
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     apiCases.get().then(response => {
@@ -25,6 +27,7 @@ const Add = () => {
       setLastUpdate(distance);
 
       setCases(casesData);
+      setLoading(false);
     });
   }, []);
 
@@ -53,20 +56,26 @@ const Add = () => {
                 <th>Adicionar</th>
               </tr>
             </thead>
-
-            <tbody>
-              {cases.map(caseIndex => (
-                <tr key={caseIndex.state}>
-                  <td>{caseIndex.state}</td>
-                  <td>{caseIndex.count}</td>
-                  <td>
-                    <button type="button" onClick={() => openModal(caseIndex)}>
-                      <FiPlus />
-                    </button>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
+            {loading ? (
+              <ComponentSkeleton />
+            ) : (
+              <tbody>
+                {cases.map(caseIndex => (
+                  <tr key={caseIndex.state}>
+                    <td>{caseIndex.state}</td>
+                    <td>{caseIndex.count}</td>
+                    <td>
+                      <button
+                        type="button"
+                        onClick={() => openModal(caseIndex)}
+                      >
+                        <FiPlus />
+                      </button>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            )}
           </table>
         </TableContainer>
       </Container>
