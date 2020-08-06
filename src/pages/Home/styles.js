@@ -53,6 +53,17 @@ export const TableContainer = styled.section`
       font-weight: normal;
       color: #969cb3;
       text-align: center;
+
+      button {
+        margin-left: auto;
+        background: transparent;
+        border: 0;
+
+        svg {
+          color: #999591;
+          width: 20px;
+          height: 20px;
+        }
     }
 
     td:first-child {

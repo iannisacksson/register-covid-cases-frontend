@@ -57,7 +57,7 @@ const Add = () => {
               </tr>
             </thead>
             {loading ? (
-              <ComponentSkeleton />
+              <ComponentSkeleton qtdItems={3} />
             ) : (
               <tbody>
                 {cases.map(caseIndex => (
