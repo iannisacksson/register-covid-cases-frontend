@@ -21,7 +21,18 @@ const Modal = ({ isOpen, handleClick, caseIndex }) => {
   const handleSubmit = async e => {
     e.preventDefault();
 
-    await api.post('/cases', { date: dateFormatted, state, count });
+    const date = dateFormatted.split('/');
+
+    const dateUpdated = format(
+      new Date(date[2], date[1] - 1, date[0]),
+      'MM-dd-yyyy',
+    );
+
+    await api.post('/cases', {
+      date: dateUpdated,
+      state,
+      count,
+    });
 
     history.push('/');
   };

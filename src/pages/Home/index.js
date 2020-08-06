@@ -1,10 +1,25 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { format, parseISO } from 'date-fns';
 
 import Header from '../../components/Header';
-
 import { Container, TableContainer } from './styles';
+import api from '../../services/api';
 
 const Home = () => {
+  const [cases, setCases] = useState([]);
+
+  useEffect(() => {
+    api.get('/cases').then(response => {
+      const casesFormatted = response.data.map(caseIndex => {
+        return {
+          ...caseIndex,
+          dateFormatted: format(parseISO(caseIndex.date), 'dd/MM/yyyy'),
+        };
+      });
+
+      setCases(casesFormatted);
+    });
+  }, []);
   return (
     <>
       <Header />
@@ -20,21 +35,13 @@ const Home = () => {
             </thead>
 
             <tbody>
-              <tr>
-                <td>PA</td>
-                <td>25300</td>
-                <td>05/07/2020</td>
-              </tr>
-              <tr>
-                <td>AP</td>
-                <td>25300</td>
-                <td>05/07/2020</td>
-              </tr>
-              <tr>
-                <td>BA</td>
-                <td>25300</td>
-                <td>05/07/2020</td>
-              </tr>
+              {cases.map(caseIndex => (
+                <tr key={caseIndex.state}>
+                  <td>{caseIndex.state}</td>
+                  <td>{caseIndex.count}</td>
+                  <td>{caseIndex.dateFormatted}</td>
+                </tr>
+              ))}
             </tbody>
           </table>
         </TableContainer>
