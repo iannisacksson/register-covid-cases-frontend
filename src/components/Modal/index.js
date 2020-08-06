@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { format } from 'date-fns';
 import { useHistory } from 'react-router-dom';
+import { showToast } from '../../styles/toast';
 
 import { CustomStyles, Container, Button } from './styles';
 import api from '../../services/api';
@@ -11,6 +12,9 @@ const Modal = ({ isOpen, handleClick, caseIndex }) => {
   const [state, setState] = useState('');
   const [dateFormatted, setDateFormatted] = useState('');
   const history = useHistory();
+
+  const handleToast = async () =>
+    showToast({ type: 'success', message: 'Cadastrado com sucesso' });
 
   useEffect(() => {
     setDateFormatted(format(new Date(), 'dd/MM/yyyy'));
@@ -33,6 +37,7 @@ const Modal = ({ isOpen, handleClick, caseIndex }) => {
       state,
       count,
     });
+    handleToast();
 
     history.push('/');
   };
@@ -84,12 +89,16 @@ const Modal = ({ isOpen, handleClick, caseIndex }) => {
 };
 
 Modal.propTypes = {
-  isOpen: PropTypes.bool.isRequired,
+  isOpen: PropTypes.bool,
   handleClick: PropTypes.func.isRequired,
   caseIndex: PropTypes.shape({
     state: PropTypes.string,
     count: PropTypes.number,
   }).isRequired,
+};
+
+Modal.defaultProps = {
+  isOpen: false,
 };
 
 export default Modal;

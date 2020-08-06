@@ -37,29 +37,6 @@ export const CustomStyles = styled(Modal).attrs({
 `;
 
 export const Container = styled.div`
-  /* background: #fff;
-  border-radius: 10px;
-  padding: 16px;
-  width: 100%;
-  border: 2px solid #969cb3;
-  color: #666360;
-  display: flex;
-  align-items: center;
-
-  & + div {
-    margin-top: 8px;
-  }
-
-  input {
-    flex: 1;
-    background: transparent;
-    border: 0;
-    color: #969cb3;
-
-    &::placeholder {
-      color: ${shade(-1.0, '#666360')};
-    }
-  } */
   display: flex;
   position: relative;
   border-radius: 7px;
@@ -73,69 +50,67 @@ export const Container = styled.div`
     margin-top: 8px;
   }
 
-    label,
-    input {
-      transition: all 0.2s;
-      touch-action: manipulation;
+  label,
+  input {
+    transition: all 0.2s;
+    touch-action: manipulation;
+  }
+
+  input {
+    padding: 20px 0 10px 10px;
+    border-width: 0px 0px 2px 0px;
+    border-color: #fff;
+    border-radius: 4px;
+    width: 100%;
+    outline: none;
+    font-family: inherit;
+    -webkit-appearance: none;
+
+    &::placeholder {
+      color: ${shade(-1.0, '#666360')};
     }
 
-    input {
-      padding: 20px 0 10px 10px;
-      border-width: 0px 0px 2px 0px;
-      border-color: #fff;
-      border-radius: 4px;
-      width: 100%;
-      outline: none;
-      font-family: inherit;
-      -webkit-appearance: none;
-
-      &::placeholder {
-        color: ${shade(-1.0, '#666360')};
-      }
-
-      &::-webkit-input-placeholder {
-        opacity: 0;
-        transition: inherit;
-        color: rgba(0, 0, 0, 0.2);
-      }
-
-      &:focus::-webkit-input-placeholder {
-        opacity: 1;
-      }
+    &::-webkit-input-placeholder {
+      opacity: 0;
+      transition: inherit;
+      color: rgba(0, 0, 0, 0.2);
     }
 
-    input:focus {
-      outline: 0;
-      border-bottom: 2px solid #5636d3;
+    &:focus::-webkit-input-placeholder {
+      opacity: 1;
     }
+  }
 
-    label {
-      position: absolute;
-      letter-spacing: 0.05em;
-      font-size: 12px;
-      top: -13px;
-      left: 10px;
-    }
+  input:focus {
+    outline: 0;
+    border-bottom: 2px solid #5636d3;
+  }
 
-    input:placeholder-shown + label {
-      cursor: text;
-      max-width: 66.66%;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      transform-origin: left bottom;
-      transform: translate(0rem, 2.125rem) scale(1.5);
-    }
+  label {
+    position: absolute;
+    letter-spacing: 0.05em;
+    font-size: 12px;
+    top: -13px;
+    left: 10px;
+  }
 
+  input:placeholder-shown + label {
+    cursor: text;
+    max-width: 66.66%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    transform-origin: left bottom;
+    transform: translate(0rem, 2.125rem) scale(1.5);
+  }
 
-
-    input:not(:placeholder-shown) + label,
-    input:focus + label {
-      transform: translate(0rem, 1.2rem) scale(1.2);
-      cursor: pointer;
-      transform-origin: left bottom;
-      color: #5636d3;
-    }
+  input:not(:placeholder-shown) + label,
+  input:focus + label {
+    transform: translate(0rem, 1.2rem) scale(1.2);
+    cursor: pointer;
+    transform-origin: left bottom;
+    color: #5636d3;
+  }
 `;
 
 export const Button = styled.button`

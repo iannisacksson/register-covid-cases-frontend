@@ -48,18 +48,6 @@ export const TableContainer = styled.section`
           height: 20px;
         }
       }
-
-      &.title {
-        color: #363f5f;
-      }
-
-      &.income {
-        color: #12a454;
-      }
-
-      &.outcome {
-        color: #e83f5b;
-      }
     }
 
     td:first-child {
