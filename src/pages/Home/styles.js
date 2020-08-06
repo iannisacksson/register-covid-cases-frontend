@@ -7,6 +7,28 @@ export const Container = styled.div`
   padding: 40px 20px;
 `;
 
+export const BoxImage = styled.div`
+  width: 50%;
+  height: 100%;
+  margin: 0 auto;
+
+  img {
+    width: 100%;
+  }
+
+  p {
+    padding: 20px 0;
+    text-align: center;
+    line-height: 30px;
+    color: #969cb3;
+  }
+`;
+
+export const Title = styled.div`
+  color: #969cb3;
+  text-align: center;
+`;
+
 export const TableContainer = styled.section`
   margin-top: 64px;
 
@@ -31,18 +53,6 @@ export const TableContainer = styled.section`
       font-weight: normal;
       color: #969cb3;
       text-align: center;
-
-      &.title {
-        color: #363f5f;
-      }
-
-      &.income {
-        color: #12a454;
-      }
-
-      &.outcome {
-        color: #e83f5b;
-      }
     }
 
     td:first-child {

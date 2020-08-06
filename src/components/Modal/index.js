@@ -13,8 +13,7 @@ const Modal = ({ isOpen, handleClick, caseIndex }) => {
   const [dateFormatted, setDateFormatted] = useState('');
   const history = useHistory();
 
-  const handleToast = async () =>
-    showToast({ type: 'success', message: 'Cadastrado com sucesso' });
+  const handleToast = async (type, message) => showToast({ type, message });
 
   useEffect(() => {
     setDateFormatted(format(new Date(), 'dd/MM/yyyy'));
@@ -25,21 +24,25 @@ const Modal = ({ isOpen, handleClick, caseIndex }) => {
   const handleSubmit = async e => {
     e.preventDefault();
 
-    const date = dateFormatted.split('/');
+    try {
+      const date = dateFormatted.split('/');
 
-    const dateUpdated = format(
-      new Date(date[2], date[1] - 1, date[0]),
-      'MM-dd-yyyy',
-    );
+      const dateUpdated = format(
+        new Date(date[2], date[1] - 1, date[0]),
+        'MM-dd-yyyy',
+      );
 
-    await api.post('/cases', {
-      date: dateUpdated,
-      state,
-      count,
-    });
-    handleToast();
+      await api.post('/cases', {
+        date: dateUpdated,
+        state,
+        count,
+      });
+      handleToast('success', 'Cadastro com sucesso');
 
-    history.push('/');
+      history.push('/');
+    } catch (err) {
+      handleToast('error', 'Erro ao cadastrar');
+    }
   };
 
   return (

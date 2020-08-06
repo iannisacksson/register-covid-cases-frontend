@@ -1,9 +1,8 @@
 import React from 'react';
 import { format } from 'date-fns';
 import { pt } from 'date-fns/locale';
-import { Link } from 'react-router-dom';
 
-import { Container } from './styles';
+import { Container, LinkElement } from './styles';
 
 const Header = () => {
   const now = new Date();
@@ -14,8 +13,10 @@ const Header = () => {
     <Container>
       <header>
         <nav>
-          <Link to="/">Listagem</Link>
-          <Link to="/add">Adicionar</Link>
+          <LinkElement to="/" exact>
+            Listagem
+          </LinkElement>
+          <LinkElement to="/add">Adicionar</LinkElement>
         </nav>
 
         <p>

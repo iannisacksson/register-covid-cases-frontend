@@ -42,7 +42,7 @@ const Add = () => {
       <Header />
       <Container>
         <Updated>
-          <p>Última atualização do APIFY foi a{lastUpdate}</p>
+          <p>Última atualização do APIFY foi a {lastUpdate}</p>
         </Updated>
         <TableContainer>
           <table>
