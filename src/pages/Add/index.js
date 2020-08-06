@@ -1,17 +1,20 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
+import Modal from 'react-modal';
 
-import { FiPlus } from 'react-icons/fi';
+import { FiPlus, FiCheck, FiXCircle, FiRefreshCw } from 'react-icons/fi';
 import { formatDistance, parseISO } from 'date-fns';
 import { pt } from 'date-fns/locale';
 import Header from '../../components/Header';
-import Modal from '../../components/Modal';
+import ModalComponent from '../../components/Modal';
 import ComponentSkeleton from '../../components/Skeleton';
 
 import { Container, TableContainer, Updated } from './styles';
 import apiCases from '../../services/apiCases';
+import api from '../../services/api';
 
 const Add = () => {
   const [cases, setCases] = useState([]);
+  const [casesDB, setCasesDB] = useState([]);
   const [caseOne, setCaseOne] = useState({});
   const [lastUpdate, setLastUpdate] = useState();
   const [modalIsOpen, setModelIsOpen] = useState();
@@ -29,6 +32,13 @@ const Add = () => {
       setCases(casesData);
       setLoading(false);
     });
+    api.get('/cases').then(response => {
+      const casesData = response.data;
+
+      setCasesDB(casesData);
+    });
+
+    Modal.setAppElement('body');
   }, []);
 
   function openModal(caseIndex) {
@@ -39,6 +49,15 @@ const Add = () => {
   function closeModal() {
     setModelIsOpen(false);
   }
+
+  const verifyStateRegister = useCallback(
+    state => {
+      const stateExist = casesDB.find(caseTrue => caseTrue.state === state);
+
+      return !stateExist;
+    },
+    [casesDB],
+  );
 
   return (
     <>
@@ -53,11 +72,12 @@ const Add = () => {
               <tr>
                 <th>Estado</th>
                 <th>Infectados</th>
-                <th>Adicionar</th>
+                <th>Adicionar/Atualizar</th>
+                <th>Adicionado</th>
               </tr>
             </thead>
             {loading ? (
-              <ComponentSkeleton qtdItems={3} />
+              <ComponentSkeleton qtdItems={4} />
             ) : (
               <tbody>
                 {cases.map(caseIndex => (
@@ -69,8 +89,19 @@ const Add = () => {
                         type="button"
                         onClick={() => openModal(caseIndex)}
                       >
-                        <FiPlus />
+                        {verifyStateRegister(caseIndex.state) ? (
+                          <FiPlus />
+                        ) : (
+                          <FiRefreshCw />
+                        )}
                       </button>
+                    </td>
+                    <td>
+                      {verifyStateRegister(caseIndex.state) ? (
+                        <FiXCircle />
+                      ) : (
+                        <FiCheck />
+                      )}
                     </td>
                   </tr>
                 ))}
@@ -79,7 +110,7 @@ const Add = () => {
           </table>
         </TableContainer>
       </Container>
-      <Modal
+      <ModalComponent
         caseIndex={caseOne}
         isOpen={modalIsOpen}
         handleClick={closeModal}
