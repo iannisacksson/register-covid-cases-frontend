@@ -31,6 +31,12 @@ export const Title = styled.div`
 
 export const TableContainer = styled.section`
   margin-top: 64px;
+  max-width: 100%;
+  overflow: scroll;
+
+  &::-webkit-scrollbar {
+    width: 0px;
+  }
 
   table {
     width: 100%;
@@ -64,6 +70,7 @@ export const TableContainer = styled.section`
           width: 20px;
           height: 20px;
         }
+      }
     }
 
     td:first-child {

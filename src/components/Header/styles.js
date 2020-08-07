@@ -6,7 +6,7 @@ const activeClassName = 'nav-item-active';
 
 export const Container = styled.div`
   background: #5636d3;
-  padding: 30px 0;
+  padding: 30px;
 
   header {
     max-width: 1120px;
@@ -40,6 +40,22 @@ export const Container = styled.div`
 
   p {
     color: #fff;
+  }
+
+  @media (max-width: 575px) {
+    p {
+      display: none;
+    }
+
+    header {
+      justify-content: center;
+
+      nav {
+        width: 100%;
+        display: flex;
+        justify-content: space-around;
+      }
+    }
   }
 `;
 

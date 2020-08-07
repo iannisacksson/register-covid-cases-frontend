@@ -14,6 +14,12 @@ export const Updated = styled.div`
 
 export const TableContainer = styled.section`
   margin-top: 64px;
+  max-width: 100%;
+  overflow: scroll;
+
+  &::-webkit-scrollbar {
+    width: 0px;
+  }
 
   table {
     width: 100%;
