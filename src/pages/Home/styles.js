@@ -8,9 +8,13 @@ export const Container = styled.div`
 `;
 
 export const BoxImage = styled.div`
-  width: 50%;
+  width: 70%;
   height: 100%;
   margin: 0 auto;
+
+  @media (max-width: 720px) {
+    width: 100%;
+  }
 
   img {
     width: 100%;
