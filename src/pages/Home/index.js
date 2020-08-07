@@ -66,7 +66,7 @@ const Home = () => {
         ) : (
           <>
             <Title>
-              <p>Casos cadastrados por estado</p>
+              <p>Casos adicionados por estado</p>
             </Title>
 
             <TableContainer>
