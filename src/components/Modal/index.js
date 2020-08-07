@@ -82,7 +82,7 @@ const Modal = ({ isOpen, handleClick, caseIndex }) => {
               value={dateFormatted}
               onChange={e => setDateFormatted(e.target.value)}
             />
-            <label htmlFor="date">Date</label>
+            <label htmlFor="date">Data</label>
           </Container>
           <Button type="submit">Adicionar</Button>
         </form>
