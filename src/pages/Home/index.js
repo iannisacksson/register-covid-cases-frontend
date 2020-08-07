@@ -59,8 +59,8 @@ const Home = () => {
           <BoxImage>
             <img src={add} alt="Add" />
             <p>
-              Não nenhum caso cadastrado. Navegue para a aba "Adicionar" para
-              cadastrar novos casos
+              Não há nenhum caso cadastrado. Navegue para a aba "Adicionar" para
+              cadastrar novos casos.
             </p>
           </BoxImage>
         ) : (
